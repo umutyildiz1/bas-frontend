@@ -21,7 +21,7 @@ export default function SignUpPage() {
             <Form>
               <Form.Field>
                 <label>Name</label>
-                <input name="name" placeholder="Name" onAction={onAction}/>
+                <input name="name" placeholder="Name"/>
               </Form.Field>
               <Form.Field>
                 <label>Surname</label>
