@@ -9,7 +9,21 @@ import {
 } from "semantic-ui-react";
 
 export default function SignUpPage() {
-    
+    const [name,setName] = useState("")
+    const [surname, setSurname] = useState("")
+
+    function onChange(event){
+      const {name,value} = event.target //destructuring**
+      switch(name){
+        case "name":
+          setName(value)
+          break
+        case "surname":
+          setSurname(value)
+          break
+      }
+      
+    }
   return (
     <div>
       <Grid textAlign="center">
@@ -21,11 +35,11 @@ export default function SignUpPage() {
             <Form>
               <Form.Field>
                 <label>Name</label>
-                <input name="name" placeholder="Name"/>
+                <input name="name" placeholder="Name" onChange = {onChange} />
               </Form.Field>
               <Form.Field>
                 <label>Surname</label>
-                <input name="surname" placeholder="Surname" />
+                <input name="surname" placeholder="Surname" onChange = {onChange}/>
               </Form.Field>
               <Button type="submit">
                 Sign Up
