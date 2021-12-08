@@ -7,12 +7,13 @@ import {
   GridColumn,
   GridRow,
 } from "semantic-ui-react";
+import UserService from "./services/userService";
 
 export default function SignUpPage() {
     const [name,setName] = useState("")
     const [surname, setSurname] = useState("")
 
-    function onChange(event){
+    let onChange = (event) => {//inputlardan bilgileri statelere alan fonksiyon
       const {name,value} = event.target //destructuring**
       switch(name){
         case "name":
@@ -22,6 +23,16 @@ export default function SignUpPage() {
           setSurname(value)
           break
       }
+      
+    }
+    let onClickSignUp = (event) =>{
+      event.preventDefault();
+      let userService = new UserService()
+      let requestBody = {
+        name, //key ve valuelar aynı ise tek birini yazmamız yeterli
+        surname
+      }
+      userService.createUser(requestBody)
       
     }
   return (
@@ -41,7 +52,7 @@ export default function SignUpPage() {
                 <label>Surname</label>
                 <input name="surname" placeholder="Surname" onChange = {onChange}/>
               </Form.Field>
-              <Button type="submit">
+              <Button onClick={onClickSignUp} type="submit">
                 Sign Up
               </Button>
             </Form>
