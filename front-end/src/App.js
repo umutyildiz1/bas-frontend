@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-import SignUpPage from './SignUpPage';
+import SignUpPage from './pages/SignUpPage';
 function App() {
   return (
     <div className="App">
