@@ -1,7 +1,7 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 export default function Input(props) {
-    const {label, error, onChange,name} = props
+    const {label, error, onChange,name, type} = props
   return (
     <div>
       <Form.Group>
@@ -11,6 +11,7 @@ export default function Input(props) {
           className="form-control"
           name={name}
           onChange={onChange}
+          type={type}
         />
         <div className="invalid-feedback">{error}</div>
       </Form.Group>

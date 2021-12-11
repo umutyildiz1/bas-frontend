@@ -10,6 +10,9 @@ class UserService {
         let user = axios.get("/users/getUserById",id)
         console.log(user)
     }
+    logIn(token){
+        axios.post("/users/logIn/",{},{auth:token})
+    }
 }
 
 export default UserService;

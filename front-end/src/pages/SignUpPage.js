@@ -49,11 +49,11 @@ export default function SignUpPage() {
     event.preventDefault();
     let userService = new UserService();
     let requestBody = {
-      name, //key ve valuelar aynı ise tek birini yazmamız yeterli
-      surname,
-      email,
-      password,
-      phoneNumber
+      userName : name, //key ve valuelar aynı ise tek birini yazmamız yeterli
+      userSurname : surname,
+      userEmail : email,
+      userPassword : password,
+      userPhoneNumber : phoneNumber
     };
 
     setPendingApiCall(true)
@@ -85,7 +85,7 @@ export default function SignUpPage() {
               <Input name="name" error={userName} label="Name" onChange={onChange} />
               <Input name="surname" error={userSurname} label="Surname" onChange={onChange} />
               <Input name="email" error={userEmail} label="Email" onChange={onChange} />
-              <Input name="password" error={userPassword} label="Password" onChange={onChange} />
+              <Input name="password" error={userPassword} label="Password" onChange={onChange} type="password" />
               <Input name="phoneNumber" error={userPhoneNumber} label="Phone Number" onChange={onChange} />
               
               <Form.Group className="text-center mt-3">
