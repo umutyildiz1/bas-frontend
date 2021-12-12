@@ -19,10 +19,9 @@ export default function LoginPage() {
     const onClickLogIn = (event) => {
         event.preventDefault()
         const token = {
-            email,
+            username : email,
             password
         }
-        console.log(token)
         userService.logIn(token)
     }
 
