@@ -11,8 +11,7 @@ class UserService {
         console.log(user)
     }
     logIn(token){
-        console.log(token)
-        axios.post("/api/auth/handle",{},{auth:token})
+        return axios.post("/api/auth/handle",{},{auth:token})
     }
 }
 

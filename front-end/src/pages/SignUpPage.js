@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Form, Col, Row, Spinner, Button } from "react-bootstrap";
+import ButtonWithProgress from "../components/ButtonWithProgress";
 import Input from '../components/Input'
 import UserService from "../services/userService";
 
@@ -89,15 +90,8 @@ export default function SignUpPage() {
               <Input name="phoneNumber" error={userPhoneNumber} label="Phone Number" onChange={onChange} />
               
               <Form.Group className="text-center mt-3">
-              <Button
-                onClick={onClickSignUp}
-                disabled={pendingApiCall}
-                type="submit"
-              >
-                {pendingApiCall?<Spinner animation="border" size="sm"/>:''}
-                
-                Sign Up
-              </Button>
+                <ButtonWithProgress onClick={onClickSignUp} disabled={pendingApiCall} pendingApiCall={pendingApiCall} text="Sign Up"/>
+              
               </Form.Group>
               
             </Form>
