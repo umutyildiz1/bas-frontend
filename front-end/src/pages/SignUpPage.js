@@ -1,18 +1,20 @@
 import React, { useState } from "react";
-import { Container, Form, Col, Row, Spinner, Button } from "react-bootstrap";
+import { Container, Form, Col, Row } from "react-bootstrap";
 import ButtonWithProgress from "../components/ButtonWithProgress";
 import Input from '../components/Input'
 import UserService from "../services/userService";
 
-export default function SignUpPage() {
+export default function SignUpPage(props) {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [pendingApiCall, setPendingApiCall] = useState(false);
   const [errors, setErrors] = useState({})
   const {userName,userSurname,userPassword,userEmail,userPhoneNumber} = errors;//name error
+
+  const {spinnerCall} = props;
+
   
   let onChange = (event) => {
     //inputlardan bilgileri statelere alan fonksiyon
@@ -57,8 +59,6 @@ export default function SignUpPage() {
       userPhoneNumber : phoneNumber
     };
 
-    setPendingApiCall(true)
-
     try{
       
       let response = await userService.createUser(requestBody); 
@@ -69,7 +69,6 @@ export default function SignUpPage() {
       }
       
     }
-    setPendingApiCall(false)
    
   };
 
@@ -90,7 +89,7 @@ export default function SignUpPage() {
               <Input name="phoneNumber" error={userPhoneNumber} label="Phone Number" onChange={onChange} />
               
               <Form.Group className="text-center mt-3">
-                <ButtonWithProgress onClick={onClickSignUp} disabled={pendingApiCall} pendingApiCall={pendingApiCall} text="Sign Up"/>
+                <ButtonWithProgress onClick={onClickSignUp} disabled={spinnerCall} spinnerCall={spinnerCall} text="Sign Up"/>
               
               </Form.Group>
               

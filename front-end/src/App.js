@@ -3,10 +3,14 @@ import './App.css';
 
 import SignUpPage from './pages/SignUpPage';
 import LoginPage from './pages/LoginPage';
+import ProgressApi from './shared/ProgressApi';
 function App() {
   return (
     <div className="App">
-      <LoginPage />
+      <ProgressApi>
+        <LoginPage />
+      </ProgressApi>
+      
     </div>
   );
 }

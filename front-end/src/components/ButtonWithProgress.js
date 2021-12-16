@@ -1,7 +1,7 @@
 import React from 'react'
 import { Spinner, Button } from "react-bootstrap";
 export default function ButtonWithProgress(props) {
-    const {onClick, disabled, pendingApiCall,text} = props
+    const {onClick, disabled, spinnerCall,text} = props
     return (
         <div>
             <Button
@@ -9,7 +9,7 @@ export default function ButtonWithProgress(props) {
             type="submit"
             disabled = {disabled}
           >
-            {pendingApiCall?<Spinner animation="border" size="sm"/>:''}
+            {spinnerCall?<Spinner animation="border" size="sm"/>:''}
             {text}
           </Button>
           
