@@ -3,7 +3,7 @@ import axios from "axios";
 class UserService {
     createUser(requestBody){
         //axios.post //(api url, request body(json))
-        return axios.post("/users/createUser/",requestBody)
+        return axios.post("/users/createUser",requestBody)
         
     }
     getByUserId = (id) =>{

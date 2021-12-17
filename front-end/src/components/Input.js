@@ -8,7 +8,6 @@ export default function Input(props) {
         <Form.Label>{label}</Form.Label>
         <Form.Control
           isInvalid={error ? true : false}
-          className="form-control"
           name={name}
           onChange={onChange}
           type={type}
