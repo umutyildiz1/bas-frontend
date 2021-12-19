@@ -35,9 +35,11 @@ export default function LoginPage(props) {
         try{
           setErrors(null)
           await userService.logIn(token)
+          console.log("Login success")
+          //history.push('/') bu kısmı hookler ile yap
+
         }catch(apiError){
           setErrors(apiError.response.data.message)
-          console.log(errors)
         }
         
     }

@@ -14,8 +14,6 @@ export default function ProgressApi(props) {
 
     axios.interceptors.request.use((request) => {
       //setSpinnerCall(true);
-      console.log("path:" + path)
-      console.log("url:" + request.url)
       checkUrlWithSpinner(request.url,true)
       return request;
     });
@@ -33,7 +31,7 @@ export default function ProgressApi(props) {
         throw error;
       }
     );
-  }, []);
+  }, []);//59. videobu componentdidmount için componentwillunmount yazılmalı mı araştır. use metotu bir id döner ve inceptör rejecte bu idyi verip kaldırabilirz
 
   
   
