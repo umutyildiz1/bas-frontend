@@ -3,15 +3,17 @@ import { Form, Container, Col, Row, Alert } from "react-bootstrap";
 import Input from "../components/Input";
 import UserService from "../services/userService";
 import ButtonWithProgress from "../components/ButtonWithProgress";
-
-export default function LoginPage(props) {
+import { connect } from "react-redux";
+import { authActionLogin } from "../redux/authActionCreator";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+function LoginPage(props) {
     const userService = new UserService();
     const [email, setEmail] = useState(null)
     const [password, setPassword] = useState(null)
     const [errors,setErrors] = useState(null)
     
-    const {spinnerCall} = props
-
+    const {spinnerCall,loginSuccess} = props
+    const history = useHistory()
     const buttonEnabled = email && password;
 
 
@@ -34,9 +36,10 @@ export default function LoginPage(props) {
         }
         try{
           setErrors(null)
-          await userService.logIn(token)
-          console.log("Login success")
-          //history.push('/') bu kısmı hookler ile yap
+          const response = await userService.logIn(token)
+          const userData = response.data
+          history.push('/') 
+          loginSuccess(userData)
 
         }catch(apiError){
           setErrors(apiError.response.data.message)
@@ -63,3 +66,19 @@ export default function LoginPage(props) {
     </Container>
   );
 }
+
+const putStateToProps = state => {
+  return {
+    state 
+  }
+}
+
+const putDispatchToProps = (dispatch) =>{
+  return {
+    loginSuccess : (payload) => {
+      return dispatch(authActionLogin(payload))
+    }
+  }
+}
+
+export default connect(putStateToProps,putDispatchToProps)(LoginPage)

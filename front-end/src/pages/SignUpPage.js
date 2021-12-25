@@ -11,7 +11,7 @@ export default function SignUpPage(props) {
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errors, setErrors] = useState({})
-  const {userName,userSurname,userPassword,userEmail,userPhoneNumber} = errors;//name error
+  const {userFName,userSurname,userPassword,userEmail,userPhoneNumber} = errors;//name error
 
   const {spinnerCall} = props;
 
@@ -23,7 +23,7 @@ export default function SignUpPage(props) {
     switch (name) {
       case "name":
         setName(value);
-        error.userName = undefined
+        error.userFName = undefined
         setErrors(error)
         break;
       case "surname":
@@ -52,7 +52,7 @@ export default function SignUpPage(props) {
     event.preventDefault();
     let userService = new UserService();
     let requestBody = {
-      userName : name, //key ve valuelar aynı ise tek birini yazmamız yeterli
+      userFName : name, //key ve valuelar aynı ise tek birini yazmamız yeterli
       userSurname : surname,
       userEmail : email,
       userPassword : password,
@@ -82,7 +82,7 @@ export default function SignUpPage(props) {
           </Row>
           </Col>
             <Form>
-              <Input name="name" error={userName} label="Name" onChange={onChange} />
+              <Input name="name" error={userFName} label="Name" onChange={onChange} />
               <Input name="surname" error={userSurname} label="Surname" onChange={onChange} />
               <Input name="email" error={userEmail} label="Email" onChange={onChange} />
               <Input name="password" error={userPassword} label="Password" onChange={onChange} type="password" />
