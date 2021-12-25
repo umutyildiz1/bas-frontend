@@ -8,10 +8,11 @@ import UserPage from '../pages/UserPage';
 
 import {HashRouter, Redirect, Route, Switch} from 'react-router-dom';
 import Navibar from '../components/NaviBar';
-
-function App() {//Higher Order Component model should be use for ApiProgress but I cant find it how rfc HoC impl
+import {connect} from 'react-redux'
+function App(props) {//Higher Order Component model should be use for ApiProgress but I cant find it how rfc HoC impl
   const login = <ProgressApi path="/api/auth/handle"><LoginPage/></ProgressApi>;
   const signup = <ProgressApi path="/users/createUser"><SignUpPage/></ProgressApi>
+  const loginState = props.isLogin
   return (
     <div className="App">
       
@@ -19,8 +20,8 @@ function App() {//Higher Order Component model should be use for ApiProgress but
       <Navibar/>
         <Switch>
         <Route exact path="/" component={HomePage} />
-          <Route path="/login">{login}</Route>
-          <Route path="/signup">{signup}</Route>
+          {!loginState?<Route path="/login">{login}</Route>:""}
+          {!loginState?<Route path="/signup">{signup}</Route>:""}
           <Route path="/users/:id" component={UserPage}/>
           <Redirect to="/" />
         </Switch>
@@ -35,4 +36,11 @@ function App() {//Higher Order Component model should be use for ApiProgress but
   );
 }
 
-export default App;
+const putStatesToProps =(storeStates) =>{
+  return {
+    isLogin : storeStates.isLogin,
+  }
+}
+
+
+export default connect(putStatesToProps)(App);
