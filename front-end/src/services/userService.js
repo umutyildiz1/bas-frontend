@@ -8,7 +8,6 @@ class UserService {
     }
     getByUserId = (id) =>{
         let user = axios.get("/users/getUserById",id)
-        console.log(user)
     }
     logIn(token){
         return axios.post("/api/auth/handle",{},{auth:token})

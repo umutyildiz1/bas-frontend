@@ -3,6 +3,7 @@ import { Nav, Navbar, Container } from "react-bootstrap";
 import {Link} from 'react-router-dom'
 import { connect } from "react-redux";
 import {authActionLogout} from "../redux/authActionCreator";
+import { FaPlusCircle } from "react-icons/fa";
 
  function Navibar(props) {
   const [login, setLogin] = useState()
@@ -17,15 +18,17 @@ import {authActionLogout} from "../redux/authActionCreator";
     setSurname(userSurname)
   }, [props])
 
-
   
   let linksNav = (<div className="d-flex"><Nav.Item className="me-2"><Link to="/login">sign in</Link></Nav.Item>
   <Nav.Item><Link to="/signup">sign up</Link></Nav.Item></div>)
   if(isLogin){
     linksNav = (
       <Container className="d-flex">
+        <Nav.Item className="me-2"><Link to = "/createAuction"><FaPlusCircle size={25}/></Link></Nav.Item>
       <Nav.Item className="me-2"><Link to={`/users/${userId}`}>{username+" "+userSurname}</Link></Nav.Item>
-      <Nav.Item><Link to="/" onClick={logoutSuccess}>Logout</Link></Nav.Item></Container>)
+      <Nav.Item><Link to="/" onClick={logoutSuccess}>Logout</Link></Nav.Item>
+      
+      </Container>)
     
   }
   return (
