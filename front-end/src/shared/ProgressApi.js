@@ -31,8 +31,7 @@ export default function ProgressApi(props) {
         throw error;
       }
     );
-  }, []);//59. videobu componentdidmount için componentwillunmount yazılmalı mı araştır. use metotu bir id döner ve inceptör rejecte bu idyi verip kaldırabilirz
-
+  }, []);
   
   
 
